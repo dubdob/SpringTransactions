@@ -1,0 +1,276 @@
+---- AspectJ Properties ---
+AspectJ Compiler 1.9.6 built on Tuesday Jul 21, 2020 at 13:30:08 PDT
+---- Dump Properties ---
+Dump file: ajcore.20201227.114822.808.txt
+Dump reason: org.aspectj.bridge.AbortException
+Dump on exception: true
+Dump at exit condition: abort
+---- Exception Information ---
+Message: abort trouble in: 
+class org.springframework.boot.diagnostics.analyzer.ValidationExceptionFailureAnalyzer extends org.springframework.boot.diagnostics.AbstractFailureAnalyzer:
+  private static final String JAVAX_MISSING_IMPLEMENTATION_MESSAGE = "Unable to create a Configuration, because no Bean Validation provider could be found"
+  private static final String JAKARTA_MISSING_IMPLEMENTATION_MESSAGE = "Unable to create a Configuration, because no Jakarta Bean Validation provider could be found"
+  void <init>():
+                    ALOAD_0     // Lorg/springframework/boot/diagnostics/analyzer/ValidationExceptionFailureAnalyzer; this   (line 31)
+                    INVOKESPECIAL org.springframework.boot.diagnostics.AbstractFailureAnalyzer.<init> ()V
+    constructor-execution(void org.springframework.boot.diagnostics.analyzer.ValidationExceptionFailureAnalyzer.<init>())
+    |               RETURN
+    constructor-execution(void org.springframework.boot.diagnostics.analyzer.ValidationExceptionFailureAnalyzer.<init>())
+  end void <init>()
+
+  protected org.springframework.boot.diagnostics.FailureAnalysis analyze(Throwable, javax.validation.ValidationException):
+                    ALOAD_2     // Ljavax/validation/ValidationException; cause   (line 41)
+                    INVOKEVIRTUAL javax.validation.ValidationException.getMessage ()Ljava/lang/String;
+                    LDC "Unable to create a Configuration, because no Bean Validation provider could be found"
+                    INVOKEVIRTUAL java.lang.String.startsWith (Ljava/lang/String;)Z
+                    IFNE L0
+                    ALOAD_2     // Ljavax/validation/ValidationException; cause
+                    INVOKEVIRTUAL javax.validation.ValidationException.getMessage ()Ljava/lang/String;   (line 42)
+                    LDC "Unable to create a Configuration, because no Jakarta Bean Validation provider could be found"
+                    INVOKEVIRTUAL java.lang.String.startsWith (Ljava/lang/String;)Z
+                    IFEQ L1
+                L0: NEW org.springframework.boot.diagnostics.FailureAnalysis   (line 43)
+                    DUP
+                    LDC "The Bean Validation API is on the classpath but no implementation could be found"
+                    LDC "Add an implementation, such as Hibernate Validator, to the classpath"
+                    ALOAD_2     // Ljavax/validation/ValidationException; cause
+                    INVOKESPECIAL org.springframework.boot.diagnostics.FailureAnalysis.<init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)V
+                    ARETURN
+                L1: ACONST_NULL   (line 47)
+                    ARETURN
+  end protected org.springframework.boot.diagnostics.FailureAnalysis analyze(Throwable, javax.validation.ValidationException)
+
+  protected volatile org.springframework.boot.diagnostics.FailureAnalysis analyze(Throwable, Throwable):
+                    ALOAD_0     // Lorg/springframework/boot/diagnostics/analyzer/ValidationExceptionFailureAnalyzer; this   (line 31)
+                    ALOAD_1
+                    ALOAD_2
+                    CHECKCAST javax.validation.ValidationException
+                    INVOKEVIRTUAL org.springframework.boot.diagnostics.analyzer.ValidationExceptionFailureAnalyzer.analyze (Ljava/lang/Throwable;Ljavax/validation/ValidationException;)Lorg/springframework/boot/diagnostics/FailureAnalysis;
+                    ARETURN
+  end protected volatile org.springframework.boot.diagnostics.FailureAnalysis analyze(Throwable, Throwable)
+
+end class org.springframework.boot.diagnostics.analyzer.ValidationExceptionFailureAnalyzer
+ -- (IllegalStateException) org.aspectj.weaver.MissingResolvedTypeWithKnownSignature) (typeBindings={T=javax.validation.ValidationException})
+org.aspectj.weaver.MissingResolvedTypeWithKnownSignature) (typeBindings={T=javax.validation.ValidationException})
+java.lang.IllegalStateException: org.aspectj.weaver.MissingResolvedTypeWithKnownSignature) (typeBindings={T=javax.validation.ValidationException})
+	at org.aspectj.weaver.BoundedReferenceType.parameterize(BoundedReferenceType.java:112)
+	at org.aspectj.weaver.ResolvedType.parameterize(ResolvedType.java:2549)
+	at org.aspectj.weaver.ResolvedMemberImpl.parameterize(ResolvedMemberImpl.java:898)
+	at org.aspectj.weaver.ResolvedMemberImpl.parameterizedWith(ResolvedMemberImpl.java:790)
+	at org.aspectj.weaver.ResolvedMemberImpl.parameterizedWith(ResolvedMemberImpl.java:743)
+	at org.aspectj.weaver.ReferenceType.getDeclaredMethods(ReferenceType.java:865)
+	at org.aspectj.weaver.ResolvedType$MethodGetterIncludingItds.get(ResolvedType.java:273)
+	at org.aspectj.weaver.ResolvedType$MethodGetterIncludingItds.get(ResolvedType.java:270)
+	at org.aspectj.weaver.Iterators$4$1.hasNext(Iterators.java:213)
+	at org.aspectj.weaver.Iterators$4.hasNext(Iterators.java:230)
+	at org.aspectj.weaver.ResolvedType.lookupResolvedMember(ResolvedType.java:642)
+	at org.aspectj.weaver.JoinPointSignatureIterator.findSignaturesFromSupertypes(JoinPointSignatureIterator.java:192)
+	at org.aspectj.weaver.JoinPointSignatureIterator.hasNext(JoinPointSignatureIterator.java:68)
+	at org.aspectj.weaver.patterns.SignaturePattern.matches(SignaturePattern.java:320)
+	at org.aspectj.weaver.patterns.KindedPointcut.matchInternal(KindedPointcut.java:202)
+	at org.aspectj.weaver.patterns.Pointcut.match(Pointcut.java:137)
+	at org.aspectj.weaver.patterns.AndPointcut.matchInternal(AndPointcut.java:56)
+	at org.aspectj.weaver.patterns.Pointcut.match(Pointcut.java:137)
+	at org.aspectj.weaver.patterns.OrPointcut.matchInternal(OrPointcut.java:56)
+	at org.aspectj.weaver.patterns.Pointcut.match(Pointcut.java:137)
+	at org.aspectj.weaver.ShadowMunger.match(ShadowMunger.java:113)
+	at org.aspectj.weaver.Advice.match(Advice.java:113)
+	at org.aspectj.weaver.bcel.BcelAdvice.match(BcelAdvice.java:161)
+	at org.aspectj.weaver.bcel.BcelClassWeaver.match(BcelClassWeaver.java:3328)
+	at org.aspectj.weaver.bcel.BcelClassWeaver.match(BcelClassWeaver.java:2704)
+	at org.aspectj.weaver.bcel.BcelClassWeaver.weave(BcelClassWeaver.java:483)
+	at org.aspectj.weaver.bcel.BcelClassWeaver.weave(BcelClassWeaver.java:103)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1712)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveWithoutDump(BcelWeaver.java:1656)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveAndNotify(BcelWeaver.java:1421)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1195)
+	at org.aspectj.weaver.tools.WeavingAdaptor.getWovenBytes(WeavingAdaptor.java:551)
+	at org.aspectj.weaver.tools.WeavingAdaptor.weaveClass(WeavingAdaptor.java:387)
+	at org.aspectj.weaver.loadtime.Aj.preProcess(Aj.java:116)
+	at org.aspectj.weaver.loadtime.ClassPreProcessorAgentAdapter.transform(ClassPreProcessorAgentAdapter.java:51)
+	at java.instrument/java.lang.instrument.ClassFileTransformer.transform(ClassFileTransformer.java:246)
+	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
+	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:563)
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1016)
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:174)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:802)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:700)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:623)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:581)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:398)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:284)
+	at org.springframework.boot.diagnostics.FailureAnalyzers.loadFailureAnalyzers(FailureAnalyzers.java:75)
+	at org.springframework.boot.diagnostics.FailureAnalyzers.<init>(FailureAnalyzers.java:66)
+	at org.springframework.boot.diagnostics.FailureAnalyzers.<init>(FailureAnalyzers.java:60)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:204)
+	at org.springframework.boot.SpringApplication.createSpringFactoriesInstances(SpringApplication.java:441)
+	at org.springframework.boot.SpringApplication.getSpringFactoriesInstances(SpringApplication.java:427)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at com.example.transactions.Application.main(Application.java:9)
+
+org.aspectj.bridge.AbortException: trouble in: 
+class org.springframework.boot.diagnostics.analyzer.ValidationExceptionFailureAnalyzer extends org.springframework.boot.diagnostics.AbstractFailureAnalyzer:
+  private static final String JAVAX_MISSING_IMPLEMENTATION_MESSAGE = "Unable to create a Configuration, because no Bean Validation provider could be found"
+  private static final String JAKARTA_MISSING_IMPLEMENTATION_MESSAGE = "Unable to create a Configuration, because no Jakarta Bean Validation provider could be found"
+  void <init>():
+                    ALOAD_0     // Lorg/springframework/boot/diagnostics/analyzer/ValidationExceptionFailureAnalyzer; this   (line 31)
+                    INVOKESPECIAL org.springframework.boot.diagnostics.AbstractFailureAnalyzer.<init> ()V
+    constructor-execution(void org.springframework.boot.diagnostics.analyzer.ValidationExceptionFailureAnalyzer.<init>())
+    |               RETURN
+    constructor-execution(void org.springframework.boot.diagnostics.analyzer.ValidationExceptionFailureAnalyzer.<init>())
+  end void <init>()
+
+  protected org.springframework.boot.diagnostics.FailureAnalysis analyze(Throwable, javax.validation.ValidationException):
+                    ALOAD_2     // Ljavax/validation/ValidationException; cause   (line 41)
+                    INVOKEVIRTUAL javax.validation.ValidationException.getMessage ()Ljava/lang/String;
+                    LDC "Unable to create a Configuration, because no Bean Validation provider could be found"
+                    INVOKEVIRTUAL java.lang.String.startsWith (Ljava/lang/String;)Z
+                    IFNE L0
+                    ALOAD_2     // Ljavax/validation/ValidationException; cause
+                    INVOKEVIRTUAL javax.validation.ValidationException.getMessage ()Ljava/lang/String;   (line 42)
+                    LDC "Unable to create a Configuration, because no Jakarta Bean Validation provider could be found"
+                    INVOKEVIRTUAL java.lang.String.startsWith (Ljava/lang/String;)Z
+                    IFEQ L1
+                L0: NEW org.springframework.boot.diagnostics.FailureAnalysis   (line 43)
+                    DUP
+                    LDC "The Bean Validation API is on the classpath but no implementation could be found"
+                    LDC "Add an implementation, such as Hibernate Validator, to the classpath"
+                    ALOAD_2     // Ljavax/validation/ValidationException; cause
+                    INVOKESPECIAL org.springframework.boot.diagnostics.FailureAnalysis.<init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)V
+                    ARETURN
+                L1: ACONST_NULL   (line 47)
+                    ARETURN
+  end protected org.springframework.boot.diagnostics.FailureAnalysis analyze(Throwable, javax.validation.ValidationException)
+
+  protected volatile org.springframework.boot.diagnostics.FailureAnalysis analyze(Throwable, Throwable):
+                    ALOAD_0     // Lorg/springframework/boot/diagnostics/analyzer/ValidationExceptionFailureAnalyzer; this   (line 31)
+                    ALOAD_1
+                    ALOAD_2
+                    CHECKCAST javax.validation.ValidationException
+                    INVOKEVIRTUAL org.springframework.boot.diagnostics.analyzer.ValidationExceptionFailureAnalyzer.analyze (Ljava/lang/Throwable;Ljavax/validation/ValidationException;)Lorg/springframework/boot/diagnostics/FailureAnalysis;
+                    ARETURN
+  end protected volatile org.springframework.boot.diagnostics.FailureAnalysis analyze(Throwable, Throwable)
+
+end class org.springframework.boot.diagnostics.analyzer.ValidationExceptionFailureAnalyzer
+
+	at org.aspectj.bridge.MessageWriter.handleMessage(MessageWriter.java:47)
+	at org.aspectj.weaver.tools.WeavingAdaptor$WeavingAdaptorMessageWriter.handleMessage(WeavingAdaptor.java:821)
+	at org.aspectj.weaver.tools.WeavingAdaptor$WeavingAdaptorMessageHolder.handleMessage(WeavingAdaptor.java:766)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1738)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveWithoutDump(BcelWeaver.java:1656)
+	at org.aspectj.weaver.bcel.BcelWeaver.weaveAndNotify(BcelWeaver.java:1421)
+	at org.aspectj.weaver.bcel.BcelWeaver.weave(BcelWeaver.java:1195)
+	at org.aspectj.weaver.tools.WeavingAdaptor.getWovenBytes(WeavingAdaptor.java:551)
+	at org.aspectj.weaver.tools.WeavingAdaptor.weaveClass(WeavingAdaptor.java:387)
+	at org.aspectj.weaver.loadtime.Aj.preProcess(Aj.java:116)
+	at org.aspectj.weaver.loadtime.ClassPreProcessorAgentAdapter.transform(ClassPreProcessorAgentAdapter.java:51)
+	at java.instrument/java.lang.instrument.ClassFileTransformer.transform(ClassFileTransformer.java:246)
+	at java.instrument/sun.instrument.TransformerManager.transform(TransformerManager.java:188)
+	at java.instrument/sun.instrument.InstrumentationImpl.transform(InstrumentationImpl.java:563)
+	at java.base/java.lang.ClassLoader.defineClass1(Native Method)
+	at java.base/java.lang.ClassLoader.defineClass(ClassLoader.java:1016)
+	at java.base/java.security.SecureClassLoader.defineClass(SecureClassLoader.java:174)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.defineClass(BuiltinClassLoader.java:802)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.findClassOnClassPathOrNull(BuiltinClassLoader.java:700)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClassOrNull(BuiltinClassLoader.java:623)
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:581)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:178)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:521)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:398)
+	at org.springframework.util.ClassUtils.forName(ClassUtils.java:284)
+	at org.springframework.boot.diagnostics.FailureAnalyzers.loadFailureAnalyzers(FailureAnalyzers.java:75)
+	at org.springframework.boot.diagnostics.FailureAnalyzers.<init>(FailureAnalyzers.java:66)
+	at org.springframework.boot.diagnostics.FailureAnalyzers.<init>(FailureAnalyzers.java:60)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:490)
+	at org.springframework.beans.BeanUtils.instantiateClass(BeanUtils.java:204)
+	at org.springframework.boot.SpringApplication.createSpringFactoriesInstances(SpringApplication.java:441)
+	at org.springframework.boot.SpringApplication.getSpringFactoriesInstances(SpringApplication.java:427)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
+	at com.example.transactions.Application.main(Application.java:9)
+---- System Properties ---
+sun.desktop=windows
+awt.toolkit=sun.awt.windows.WToolkit
+java.specification.version=11
+sun.cpu.isalist=amd64
+sun.jnu.encoding=Cp1251
+java.class.path=C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.springframework\spring-core\5.2.8.RELEASE\35a1654028254abd7cb85799a891de8a0ab9f599\spring-core-5.2.8.RELEASE.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.apache.logging.log4j\log4j-api\2.13.3\ec1508160b93d274b1add34419b897bae84c6ca9\log4j-api-2.13.3.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\ch.qos.logback\logback-core\1.2.3\864344400c3d4d92dfeb0a305dc87d953677c03c\logback-core-1.2.3.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.springframework\spring-aop\5.2.8.RELEASE\e0e9b4ed80ecde4bad258aaa3f87bf16eb1feecc\spring-aop-5.2.8.RELEASE.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-json\2.3.3.RELEASE\8c40b22a0635989ecc58f35d82fd55445be8822f\spring-boot-starter-json-2.3.3.RELEASE.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.springframework\spring-webmvc\5.2.8.RELEASE\9cccf8354a7e031e217681db33f14339200dffcf\spring-webmvc-5.2.8.RELEASE.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-databind\2.11.2\ee08bbd8975dde844307fe8309dfcd5ec7ee129d\jackson-databind-2.11.2.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-logging\2.3.3.RELEASE\23523992dd7378fa565b1fc70e19629e8b867ada\spring-boot-starter-logging-2.3.3.RELEASE.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.springframework\spring-instrument\5.3.2\8cbb8540e11887879f856411f77cc46f528c5c4\spring-instrument-5.3.2.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.springframework\spring-web\5.2.8.RELEASE\4f9542d61fff7beb6050e8028dfb6b7c6844c99a\spring-web-5.2.8.RELEASE.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter\2.3.3.RELEASE\c9bb3464e83990465b86fb94da3d20f92f036d1e\spring-boot-starter-2.3.3.RELEASE.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.apache.tomcat.embed\tomcat-embed-core\9.0.37\c3f788de87f17eb57a9e7083736c1820fcbc1046\tomcat-embed-core-9.0.37.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-annotations\2.11.2\e0a7f61fce3e3eac38a079c11831868269de2ea\jackson-annotations-2.11.2.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.apache.logging.log4j\log4j-to-slf4j\2.13.3\966f6fd1af4959d6b12bfa880121d4a2b164f857\log4j-to-slf4j-2.13.3.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.springframework\spring-aspects\5.3.2\a93e6d94a8492d128af2382fe8333188db70927\spring-aspects-5.3.2.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.springframework\spring-expression\5.2.8.RELEASE\1b3b5c84e83b450357ae84135e1b47d1b4e5a217\spring-expression-5.2.8.RELEASE.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.springframework\spring-beans\5.2.8.RELEASE\5cfafc2b0f821bda0b537449a6fdf634b0a666ff\spring-beans-5.2.8.RELEASE.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.slf4j\jul-to-slf4j\1.7.30\d58bebff8cbf70ff52b59208586095f467656c30\jul-to-slf4j-1.7.30.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-tomcat\2.3.3.RELEASE\542a0aaf0f584d186d9bd052ab10a5cf357a5b39\spring-boot-starter-tomcat-2.3.3.RELEASE.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.slf4j\slf4j-api\1.7.30\b5a4b6d16ab13e34a88fae84c35cd5d68cac922c\slf4j-api-1.7.30.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.11.2\bc022ab0f0c83c07f9c52c5ab9a6a4932b15cc35\jackson-core-2.11.2.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.aspectj\aspectjweaver\1.9.6\ee3b73aa16df35179255f17354d9dfd8e7822835\aspectjweaver-1.9.6.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.glassfish\jakarta.el\3.0.3\dab46ee1ee23f7197c13d7c40fce14817c9017df\jakarta.el-3.0.3.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.springframework\spring-jcl\5.2.8.RELEASE\e18b8dea088cc58fad8fc25ee93f22987dd05d94\spring-jcl-5.2.8.RELEASE.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.datatype\jackson-datatype-jdk8\2.11.2\d4c1933a8d62db65c3d5a5cd809511e021a189c0\jackson-datatype-jdk8-2.11.2.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.datatype\jackson-datatype-jsr310\2.11.2\e6235e5eb3cf3edd2a95cd0dc96bc48aeb309e8a\jackson-datatype-jsr310-2.11.2.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-autoconfigure\2.3.3.RELEASE\a1343e09cb6024bb4fbf656ce3cd3d13f12ccbdd\spring-boot-autoconfigure-2.3.3.RELEASE.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.module\jackson-module-parameter-names\2.11.2\c0dc526fcef5a3aae0273fc516ecf3505f7a5de8\jackson-module-parameter-names-2.11.2.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.aspectj\aspectjtools\1.9.6\f943d46e5995ad91b733777d27d545d10e5107ba\aspectjtools-1.9.6.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.apache.tomcat.embed\tomcat-embed-websocket\9.0.37\ee8b7c9081372bf40c41443c93317145a01e343a\tomcat-embed-websocket-9.0.37.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot\2.3.3.RELEASE\74f0cfae433a6ba6d936c61baa5a5316a688dc22\spring-boot-2.3.3.RELEASE.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.yaml\snakeyaml\1.26\a78a8747147d2c5807683e76ec2b633e95c14fe9\snakeyaml-1.26.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\ch.qos.logback\logback-classic\1.2.3\7c4f3c474fb2c041d8028740440937705ebb473a\logback-classic-1.2.3.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\jakarta.annotation\jakarta.annotation-api\1.3.5\59eb84ee0d616332ff44aba065f3888cf002cd2d\jakarta.annotation-api-1.3.5.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.springframework\spring-context\5.2.8.RELEASE\304d59d6c9fda8bc651fecc8c49748f8259de5ce\spring-context-5.2.8.RELEASE.jar;C:\Users\ravil\IdeaProjects\SpringTransactions\build\classes\java\main;C:\Users\ravil\IdeaProjects\SpringTransactions\build\resources\main;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-web\2.3.3.RELEASE\d38db3c19ba4bc114aaa4febfc1d89cd8725822d\spring-boot-starter-web-2.3.3.RELEASE.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.springframework\spring-jdbc\5.2.8.RELEASE\72ab49da94436dc4e26a4874abe6046bb2df3883\spring-jdbc-5.2.8.RELEASE.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.springframework\spring-tx\5.2.8.RELEASE\69255178069ff00e6b30a7a7ede71894b9e6d91b\spring-tx-5.2.8.RELEASE.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.postgresql\postgresql\42.2.14\45fa6eef266aa80024ef2ab3688d9faa38c642e5\postgresql-42.2.14.jar;C:\Users\ravil\.gradle\caches\modules-2\files-2.1\org.aspectj\aspectjrt\1.9.5\dc063f2557f6734ccb529b4c1d97132e4c8c739\aspectjrt-1.9.5.jar
+java.vm.vendor=Oracle Corporation
+sun.arch.data.model=64
+user.variant=
+java.vendor.url=http://java.oracle.com/
+user.timezone=Europe/Moscow
+os.name=Windows 10
+java.vm.specification.version=11
+sun.java.launcher=SUN_STANDARD
+user.country=RU
+sun.boot.library.path=C:\Program Files\Java\jdk-11.0.1\bin
+spring.application.admin.enabled=true
+sun.java.command=com.example.transactions.Application
+com.sun.management.jmxremote=
+jdk.debug=release
+sun.cpu.endian=little
+spring.liveBeansView.mbeanDomain=
+user.home=C:\Users\ravil
+user.language=ru
+java.specification.vendor=Oracle Corporation
+java.version.date=2018-10-16
+java.home=C:\Program Files\Java\jdk-11.0.1
+file.separator=\
+spring.output.ansi.enabled=always
+java.vm.compressedOopsMode=Zero based
+line.separator=
+
+java.specification.name=Java Platform API Specification
+java.vm.specification.vendor=Oracle Corporation
+java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment
+java.awt.headless=true
+user.script=
+sun.management.compiler=HotSpot 64-Bit Tiered Compilers
+java.runtime.version=11.0.1+13-LTS
+user.name=ravil
+spring.jmx.enabled=true
+path.separator=;
+os.version=10.0
+java.runtime.name=Java(TM) SE Runtime Environment
+file.encoding=UTF-8
+spring.beaninfo.ignore=true
+java.vm.name=Java HotSpot(TM) 64-Bit Server VM
+java.vendor.version=18.9
+java.vendor.url.bug=http://bugreport.java.com/bugreport/
+java.io.tmpdir=C:\Users\ravil\AppData\Local\Temp\
+java.version=11.0.1
+user.dir=C:\Users\ravil\IdeaProjects\SpringTransactions
+os.arch=amd64
+java.vm.specification.name=Java Virtual Machine Specification
+PID=20204
+java.awt.printerjob=sun.awt.windows.WPrinterJob
+sun.os.patch.level=
+java.library.path=C:\Program Files\Java\jdk-11.0.1\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\Common Files\Acronis\SnapAPI\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\ravil\AppData\Local\Microsoft\WindowsApps;;C:\Program Files\JetBrains\IntelliJ IDEA 2020.3\bin;;.
+java.vendor=Oracle Corporation
+java.vm.info=mixed mode
+java.vm.version=11.0.1+13-LTS
+java.rmi.server.randomIDs=true
+sun.io.unicode.encoding=UnicodeLittle
+java.class.version=55.0
+---- Command Line ---
+Empty
+---- Full Classpath ---
+Empty
+---- Compiler Messages ---
+Empty
