@@ -78,6 +78,11 @@
                 </exclusion>
             </exclusions>
         </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -99,42 +104,25 @@
             <plugin>
                 <groupId>com.nickwongdev</groupId>
                 <artifactId>aspectj-maven-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <complianceLevel>${java.version}</complianceLevel>
+                    <verbose>false</verbose>
+                    <!--<forceAjcCompile>true</forceAjcCompile>-->
+                    <showWeaveInfo>true</showWeaveInfo>
+                    <aspectLibraries>
+                        <aspectLibrary>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-aspects</artifactId>
+                        </aspectLibrary>
+                    </aspectLibraries>
+                </configuration>
                 <executions>
                     <execution>
-                        <id>compile</id>
-                        <configuration>
-                            <source>${java.version}</source>
-                            <target>${java.version}</target>
-                            <complianceLevel>${java.version}</complianceLevel>
-                            <verbose>false</verbose>
-                            <outxml>true</outxml>
-                            <aspectLibraries>
-                                <aspectLibrary>
-                                    <groupId>org.springframework</groupId>
-                                    <artifactId>spring-aspects</artifactId>
-                                </aspectLibrary>
-                            </aspectLibraries>
-                        </configuration>
                         <goals>
                             <goal>compile</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>test-compile</id>
-                        <configuration>
-                            <source>${java.version}</source>
-                            <target>${java.version}</target>
-                            <complianceLevel>${java.version}</complianceLevel>
-                            <verbose>false</verbose>
-                            <aspectLibraries>
-                                <aspectLibrary>
-                                    <groupId>org.springframework</groupId>
-                                    <artifactId>spring-aspects</artifactId>
-                                </aspectLibrary>
-                            </aspectLibraries>
-                        </configuration>
-                        <goals>
-                            <goal>test-compile</goal>
+                            <!--<goal>test-compile</goal>-->
                         </goals>
                     </execution>
                 </executions>

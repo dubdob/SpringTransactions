@@ -2,16 +2,12 @@ package com.example.transactions.dao;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import javax.sql.DataSource;
+import java.util.Arrays;
 
 @Repository
 public class MainDAO {
@@ -29,8 +25,13 @@ public class MainDAO {
     }
 
 
-    @Transactional(propagation = Propagation.MANDATORY)
+    @Transactional//(propagation = Propagation.MANDATORY)
     public void insertSound() {
+        boolean nativeAspectjActive = Arrays
+            .stream(new Exception().getStackTrace())
+            .map(StackTraceElement::toString)
+            .anyMatch(signature -> signature.contains("MainDAO.insertSound_aroundBody"));
+        logger.info("Native AspectJ active = " + nativeAspectjActive);
         insertAuthor();
         jdbcTemplate.update(
                 "INSERT INTO Sound (author, name, id) VALUES (?,?,?)",

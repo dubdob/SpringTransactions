@@ -7,6 +7,7 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.transaction.aspectj.AnnotationTransactionAspect;
 
 import javax.sql.DataSource;
 
@@ -25,6 +26,9 @@ public class DataConfig {
 
     @Bean
     public PlatformTransactionManager transactionManager() {
-        return new DataSourceTransactionManager(h2());
+        DataSourceTransactionManager transactionManager = new DataSourceTransactionManager(h2());
+        // Make native AspectJ declarative transactions work with compile-time weaving
+        AnnotationTransactionAspect.aspectOf().setTransactionManager(transactionManager);
+        return transactionManager;
     }
 }
