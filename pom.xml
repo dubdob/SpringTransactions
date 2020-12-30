@@ -16,8 +16,8 @@
 
     <properties>
         <java.version>9</java.version>
-        <aspectj-maven-plugin.version>1.11.1</aspectj-maven-plugin.version>
-        <aspectj.version>1.9.4</aspectj.version>
+        <aspectj-maven-plugin.version>1.12.6</aspectj-maven-plugin.version>
+        <aspectj.version>1.9.6</aspectj.version>
 
     </properties>
 
@@ -97,14 +97,15 @@
             </plugin>
 
             <plugin>
-                <groupId>com.github.m50d</groupId>
+                <groupId>com.nickwongdev</groupId>
                 <artifactId>aspectj-maven-plugin</artifactId>
                 <executions>
                     <execution>
                         <id>compile</id>
                         <configuration>
-                            <source>1.6</source>
-                            <target>1.6</target>
+                            <source>${java.version}</source>
+                            <target>${java.version}</target>
+                            <complianceLevel>${java.version}</complianceLevel>
                             <verbose>false</verbose>
                             <outxml>true</outxml>
                             <aspectLibraries>
@@ -121,8 +122,9 @@
                     <execution>
                         <id>test-compile</id>
                         <configuration>
-                            <source>1.6</source>
-                            <target>1.6</target>
+                            <source>${java.version}</source>
+                            <target>${java.version}</target>
+                            <complianceLevel>${java.version}</complianceLevel>
                             <verbose>false</verbose>
                             <aspectLibraries>
                                 <aspectLibrary>
@@ -140,7 +142,7 @@
                     <dependency>
                         <groupId>org.aspectj</groupId>
                         <artifactId>aspectjweaver</artifactId>
-                        <version>1.9.4</version>
+                        <version>${aspectj.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
@@ -150,7 +152,7 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>com.github.m50d</groupId>
+                    <groupId>com.nickwongdev</groupId>
                     <artifactId>aspectj-maven-plugin</artifactId>
                     <version>${aspectj-maven-plugin.version}</version>
                 </plugin>
